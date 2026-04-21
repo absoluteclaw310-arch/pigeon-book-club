@@ -75,7 +75,7 @@ nav ul li a:hover {
 }
 
 .hero {
-    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1542273917357-724b8276265c?auto=format&fit=crop&q=80&w=1920');
+    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('assets/images/hero-bg.jpg');
     background-size: cover;
     background-position: center;
     height: 80vh;
@@ -88,16 +88,19 @@ nav ul li a:hover {
 
 .hero-content h2 {
     font-size: 3rem;
-    color: #fff;
+    color: #fdfcf0; /* Creamy white for better contrast */
     margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
 }
 
 .hero-content p {
     font-size: 1.2rem;
+    color: #e0e0e0;
     margin-bottom: 2rem;
     max-width: 700px;
     margin-left: auto;
     margin-right: auto;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
 }
 
 .btn {
