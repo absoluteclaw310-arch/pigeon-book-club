@@ -39,15 +39,19 @@ header .container {
     align-items: center;
 }
 
+.logo {
+    text-align: center;
+}
 .logo h1 {
     color: #fff;
     font-size: 1.5rem;
     letter-spacing: 1px;
+    margin: 0;
 }
-
 .logo p {
     font-size: 0.8rem;
     opacity: 0.8;
+    margin: 0;
 }
 
 nav ul {
