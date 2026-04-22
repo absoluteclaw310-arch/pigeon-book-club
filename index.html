@@ -117,8 +117,40 @@
         </div>
     </section>
 
-    <footer>
+    <footer style="position: relative; z-index: 1;">
         <p>&copy; 2026 Urban Tree Fellers. All Rights Reserved.</p>
-    </footer>
+    </footer
+    
+    <script>
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbxQkyYUiWqU5z-lKZE01EilSPXtAFlDp0VyWBJ0FpdjJQ2CclJjMzPK80jk9Z6zVqs/exec';
+        const form = document.getElementById('contact-form');
+        const responseMsg = document.getElementById('form-response');
+
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+            const submitBtn = form.querySelector('button');
+            submitBtn.disabled = true;
+            submitBtn.innerText = 'Sending...';
+            
+            fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+                .then(response => {
+                    responseMsg.style.display = 'block';
+                    responseMsg.innerText = 'Thank you! Your request has been sent. We will contact you shortly.';
+                    responseMsg.style.backgroundColor = '#d4edda';
+                    responseMsg.style.color = '#155724';
+                    form.reset();
+                })
+                .catch(error => {
+                    responseMsg.style.display = 'block';
+                    responseMsg.innerText = 'Oops! Something went wrong. Please try again or email us directly.';
+                    responseMsg.style.backgroundColor = '#f8d7da';
+                    responseMsg.style.color = '#721c24';
+                })
+                .finally(() => {
+                    submitBtn.disabled = false;
+                    submitBtn.innerText = 'Request Estimate';
+                });
+        });
+    </script>
 </body>
 </html>
