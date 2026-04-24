@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | Feathers & Fun Summer Festival</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2 { font-family: 'Bungee', cursive; }
+        .gradient-bg { background: linear-gradient(135deg, #fcd34d 0%, #fbbf24 100%); }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-900">
+
+    <!-- TOP NAVIGATION BAR -->
+    <div class="bg-black text-white py-3 px-4 sticky top-0 z-50">
+        <div class="flex items-center justify-between max-w-7xl mx-auto">
+            <a href="index.html" class="text-sm md:text-lg font-bold uppercase tracking-widest hover:text-yellow-400 transition-colors">← Back to Home</a>
+        </div>
+    </div>
+
+    <!-- HERO SECTION -->
+    <header class="relative h-64 flex items-center justify-center text-center px-4 gradient-bg overflow-hidden">
+        <div class="relative z-10 max-w-4xl">
+            <h1 class="text-5xl md:text-7xl text-white drop-shadow-lg mb-4">Get In Touch</h1>
+            <p class="text-xl md:text-2xl text-white font-black drop-shadow-[0_4px_4px_rgba(0,0,0,0.8)] bg-black bg-opacity-40 px-6 py-4 rounded-2xl inline-block backdrop-blur-sm">We'd love to hear from you!</p>
+        </div>
+    </header>
+
+    <!-- CONTACT FORM SECTION -->
+    <section class="py-20 px-4">
+        <div class="max-w-2xl mx-auto text-center">
+            <p class="text-xl text-gray-600 mb-12">Have questions about the festival? Drop us a message and we'll get back to you soon.</p>
+            
+            <form id="contact-form" class="text-left grid grid-cols-1 gap-6 bg-white p-8 rounded-3xl shadow-xl border border-gray-200">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-sm font-bold text-gray-700 uppercase tracking-wide mb-2">Full Name</label>
+                        <input type="text" name="entry.600061920" required placeholder="John Doe" class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-4 focus:ring-yellow-400 outline-none transition-all">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-bold text-gray-700 uppercase tracking-wide mb-2">Phone Number</label>
+                        <input type="tel" name="entry.878167482" required placeholder="(518) 000-0000" class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-4 focus:ring-yellow-400 outline-none transition-all">
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-sm font-bold text-gray-700 uppercase tracking-wide mb-2">Email Address</label>
+                    <input type="email" name="entry.238550636" required placeholder="john@example.com" class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-4 focus:ring-yellow-400 outline-none transition-all">
+                </div>
+                <div>
+                    <label class="block text-sm font-bold text-gray-700 uppercase tracking-wide mb-2">Your Question</label>
+                    <textarea name="entry.1743288544" required rows="5" placeholder="How can we help you?" class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-4 focus:ring-yellow-400 outline-none transition-all"></textarea>
+                </div>
+                <button type="submit" class="w-full bg-black text-white py-4 rounded-xl text-lg font-bold hover:bg-gray-800 transition-all transform hover:scale-[1.02] shadow-lg">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <script>
+        async function handleContactSubmit(event) {
+            event.preventDefault();
+            const form = event.target;
+            const formData = new FormData(form);
+            const formUrl = "https://docs.google.com/forms/d/e/1FAIpQLSfvKBXniSSz_NOQaBRHCQqPfqi5q4Q0CqnwGqv4nRi2RyaBYA/formResponse";
+            
+            const hiddenIframe = document.createElement('iframe');
+            hiddenIframe.name = 'hidden_iframe';
+            hiddenIframe.style.display = 'none';
+            document.body.appendChild(hiddenIframe);
+
+            const bridgeForm = document.createElement('form');
+            bridgeForm.action = formUrl;
+            bridgeForm.method = 'POST';
+            bridgeForm.target = 'hidden_iframe';
+
+            for (const [key, value] of formData.entries()) {
+                const input = document.createElement('input');
+                input.type = 'hidden';
+                input.name = key;
+                input.value = value;
+                bridgeForm.appendChild(input);
+            }
+
+            document.body.appendChild(bridgeForm);
+            bridgeForm.submit();
+            document.body.removeChild(bridgeForm);
+            document.body.removeChild(hiddenIframe);
+
+            alert('Message sent! We will get back to you soon.');
+            form.reset();
+        }
+    </script>
+    <script>
+        document.getElementById('contact-form').onsubmit = handleContactSubmit;
+    </script>
+
+</body>
+</html>
