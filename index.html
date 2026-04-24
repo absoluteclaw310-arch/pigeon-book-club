@@ -139,36 +139,37 @@
             const phone = document.getElementById('phone').value;
             const message = document.getElementById('message').value;
 
-            // Construct the prefilled Google Form URL dynamically based on user input
-            const baseUrl = 'https://docs.google.com/forms/d/e/1FAIpQLScoFBv2btEZuUxOHlwIeGBzH8ADnGqirZBmX162hVP5rgm6dw/viewform';
-            const params = new URLSearchParams({
-                'usp': 'pp_url',
-                'entry.110809525': name,
-                'entry.1342399023': email,
-                'entry.1108436809': phone,
-                'entry.1915892561': message
-            });
-
-            const finalUrl = `${baseUrl}?${params.toString()}`;
-
-            // Silently send the data in the background using a hidden iframe
-            const hiddenIframe = document.createElement('iframe');
-            hiddenIframe.style.display = 'none';
-            hiddenIframe.src = finalUrl;
-            document.body.appendChild(hiddenIframe);
-
-            // Provide user feedback
-            responseMsg.style.display = 'block';
-            responseMsg.innerText = 'Thank you! Your request has been sent. We will contact you shortly.';
-            responseMsg.style.backgroundColor = '#d4edda';
-            responseMsg.style.color = '#155724';
+            // The 'formResponse' endpoint is used for actual submissions
+            const submitUrl = 'https://docs.google.com/forms/d/e/1FAIpQLScoFBv2btEZuUxOHlwIeGBzH8ADnGqirZBmX162hVP5rgm6dw/formResponse';
             
-            form.reset();
+            const formData = new FormData();
+            formData.append('entry.110809525', name);
+            formData.append('entry.1342399023', email);
+            formData.append('entry.1108436809', phone);
+            formData.append('entry.1915892561', message);
 
-            // Cleanup iframe after a short delay
-            setTimeout(() => {
-                document.body.removeChild(hiddenIframe);
-            }, 2000);
+            // Use fetch with mode: 'no-cors' to send data silently to Google
+            fetch(submitUrl, {
+                method: 'POST',
+                mode: 'no-cors', 
+                body: formData
+            })
+            .then(() => {
+                // Since we use no-cors, the response is opaque, but if the request 
+                // didn't throw an error, we assume it was sent.
+                responseMsg.style.display = 'block';
+                responseMsg.innerText = 'Thank you! Your request has been sent. We will contact you shortly.';
+                responseMsg.style.backgroundColor = '#d4edda';
+                responseMsg.style.color = '#155724';
+                form.reset();
+            })
+            .catch(error => {
+                console.error('Submission error:', error);
+                responseMsg.style.display = 'block';
+                responseMsg.innerText = 'Oops! Something went wrong. Please try again.';
+                responseMsg.style.backgroundColor = '#f8d7da';
+                responseMsg.style.color = '#721c24';
+            });
         });
     </script>
 </body>
