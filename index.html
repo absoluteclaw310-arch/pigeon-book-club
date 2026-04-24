@@ -3,173 +3,256 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Urban Tree Fellers | Professional Tree Services Capital District (Updated)</title>
-    <link rel="stylesheet" href="css/style.css">
+    <title>Feathers & Fun Summer Festival 2026</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        /* Fallback for fonts if not installed on system */
-        @font-face {
-            font-family: 'Copperplate Gothic Bold';
-            src: local('Copperplate Gothic Bold'), local('Copperplate');
-        }
-        @font-face {
-            font-family: 'Corbel';
-            src: local('Corbel');
-        }
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2 { font-family: 'Bungee', cursive; }
+        .gradient-bg { background: linear-gradient(135deg, #fcd34d 0%, #fbbf24 100%); }
     </style>
 </head>
-<body>
-    <header>
-        <div class="container">
-            <div class="logo" style="display: flex; align-items: center; gap: 15px;">
-                <img src="/assets/images/logo-final.png" alt="Urban Tree Fellers Logo" style="max-height: 60px; width: auto;">
-                <h1>URBAN TREE FELLERS</h1>
-            </div>
-            <nav>
-                <ul>
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#services">Services</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </nav>
+<body class="bg-gray-50 text-gray-900">
+
+    <!-- TOP COUNTDOWN BAR -->
+    <div class="bg-black text-white py-3 px-4 text-center sticky top-0 z-50">
+        <p class="text-sm md:text-lg font-bold uppercase tracking-widest block mb-1">Event Starts In:</p>
+        <p id="timer" class="text-yellow-400 text-2xl md:text-3xl font-black mb-1">Loading...</p>
+        <p class="text-xl md:text-2xl font-black text-red-600 uppercase drop-shadow-sm">Sunday July 12, 2026</p>
+    </div>
+    <div class="bg-red-600 text-white py-1 text-center font-bold uppercase tracking-widest text-lg shadow-md relative z-40">
+        Free Family Event
+    </div>
+
+    <!-- HERO SECTION -->
+    <header class="relative h-[40vh] md:h-[50vh] flex items-center justify-center text-center px-4 gradient-bg overflow-hidden">
+        <div class="absolute inset-0 opacity-70">
+            <img src="images/fest_9.jpg" alt="Festival Background" class="w-full h-full object-cover object-center">
+        </div>
+        <div class="relative z-10 max-w-4xl">
+            <h1 class="text-5xl md:text-7xl drop-shadow-lg mb-4 text-center" style="color: #00c7e2;">2nd ANNUAL<br>FEATHERS & FUN<br>SUMMER FESTIVAL<br>2026</h1>
+            <p class="text-2xl md:text-3xl text-white font-black drop-shadow-[0_4px_4px_rgba(0,0,0,0.8)] bg-black bg-opacity-40 px-6 py-4 rounded-2xl mb-8 inline-block backdrop-blur-sm">A Celebration of Community and Local Craftsmanship hosted by the Schenectady Homing Pigeon Club.</p>
+            <a href="#vendors" class="bg-black text-white px-8 py-4 rounded-full text-lg font-bold hover:bg-gray-800 transition-all transform hover:scale-105 shadow-xl">Become a Vendor</a>
         </div>
     </header>
+    <div class="bg-red-600 text-white py-1 text-center font-bold uppercase tracking-widest text-lg shadow-inner">
+        Free Family Event
+    </div>
 
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <h2>Precision. Safety. Professionalism.</h2>
-            <p>Serving Niskayuna and the entire Capital District with elite tree felling and pruning services.</p>
-            <a href="#contact" class="btn">Get a Free Estimate</a>
+    <!-- PHOTO GALLERY -->
+    <section class="py-20 px-4 max-w-7xl mx-auto text-center">
+        <h2 class="text-4xl mb-12 text-gray-800">Experience the Fun</h2>
+        <div id="gallery-grid" class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <img src="images/fest_7.jpg" class="w-full h-48 object-cover rounded-xl shadow-md hover:opacity-90 transition cursor-pointer" alt="Face Painting Fun" onclick="openLightbox(0)">
+            <img src="images/fest_2.jpg" class="w-full h-48 object-cover rounded-xl shadow-md hover:opacity-90 transition cursor-pointer" alt="Pigeon Handling" onclick="openLightbox(1)">
+            <img src="images/fest_5.jpg" class="w-full h-48 object-cover rounded-xl shadow-md hover:opacity-90 transition cursor-pointer" alt="Festival Preparations" onclick="openLightbox(2)">
+            <img src="images/fest_1.jpg" class="w-full h-48 object-cover rounded-xl shadow-md hover:opacity-90 transition cursor-pointer" alt="International Pigeon Day" onclick="openLightbox(3)">
+            <img src="images/gallery_1.jpg" class="w-full h-48 object-cover rounded-xl shadow-md hover:opacity-90 transition cursor-pointer" alt="Festival Fun 1" onclick="openLightbox(4)">
+            <img src="images/gallery_2.jpg" class="w-full h-48 object-cover rounded-xl shadow-md hover:opacity-90 transition cursor-pointer" alt="Festival Fun 2" onclick="openLightbox(5)">
+            <img src="images/gallery_3.jpg" class="w-full h-48 object-cover rounded-xl shadow-md hover:opacity-90 transition cursor-pointer" alt="Festival Fun 3" onclick="openLightbox(6)">
+            <img src="images/gallery_4.jpg" class="w-full h-48 object-cover rounded-xl shadow-md hover:opacity-90 transition cursor-pointer" alt="Festival Fun 4" onclick="openLightbox(7)">
+            <img src="images/gallery_5.jpg" class="w-full h-48 object-cover rounded-xl shadow-md hover:opacity-90 transition cursor-pointer" alt="Festival Fun 5" onclick="openLightbox(8)">
+            <img src="images/gallery_6.jpg" class="w-full h-48 object-cover rounded-xl shadow-md hover:opacity-90 transition cursor-pointer" alt="Festival Fun 6" onclick="openLightbox(9)">
+            <img src="images/gallery_8.jpg" class="w-full h-48 object-cover rounded-xl shadow-md hover:opacity-90 transition cursor-pointer" alt="Festival Fun 8" onclick="openLightbox(10)">
+            <img src="images/gallery_9.png" class="w-full h-48 object-cover rounded-xl shadow-md hover:opacity-90 transition cursor-pointer" alt="Festival Fun 9" onclick="openLightbox(11)">
         </div>
     </section>
 
-    <section id="services" class="services">
-        <div class="container">
-            <h2>Our Services</h2>
-            <div class="service-grid">
-                <div class="service-card">
-                    <h3>Pruning</h3>
-                    <p>Expert crown cleaning and shaping to ensure the health and beauty of your trees.</p>
-                    <a href="pruning.html" class="btn">Read More</a>
-                </div>
-                <div class="service-card">
-                    <h3>Clearing</h3>
-                    <p>Efficient land and lot clearing for new construction or property maintenance.</p>
-                    <a href="land_clearing.html" class="btn">Read More</a>
-                </div>
-                <div class="service-card">
-                    <h3>Chipping</h3>
-                    <p>Complete debris removal and chipping for a clean, professional finish.</p>
-                    <a href="chipping.html" class="btn">Read More</a>
-                </div>
-                <div class="service-card">
-                    <h3>Climbing</h3>
-                    <p>Certified climbers for precise work in challenging heights and tight spaces.</p>
-                    <a href="climbing.html" class="btn">Read More</a>
-                </div>
-                <div class="service-card">
-                    <h3>Rigging</h3>
-                    <p>Advanced rigging techniques to safely manage heavy limbs in restricted areas.</p>
-                    <a href="rigging.html" class="btn">Read More</a>
-                </div>
-                <div class="service-card">
-                    <h3>Lowering</h3>
-                    <p>Specialized lowering of large trees to protect your property and surroundings.</p>
-                    <a href="lowering.html" class="btn">Read More</a>
-                </div>
+    <!-- LIGHTBOX MODAL -->
+    <div id="lightbox" class="fixed inset-0 z-[100] bg-black bg-opacity-90 hidden flex items-center justify-center">
+        <button onclick="closeLightbox()" class="absolute top-6 right-6 text-white text-4xl hover:text-yellow-400 transition">&times;</button>
+        <button onclick="prevImage()" class="absolute left-4 text-white text-5xl hover:text-yellow-400 transition">&#10094;</button>
+        <img id="lightbox-img" src="" alt="Expanded Image" class="max-w-full max-h-[90vh] object-contain rounded-lg shadow-2xl">
+        <button onclick="nextImage()" class="absolute right-4 text-white text-5xl hover:text-yellow-400 transition">&#10095;</button>
+    </div>
+
+    <!-- PIGEON VARIETIES -->
+    <section class="py-20 bg-gray-100 px-4">
+        <div class="max-w-7xl mx-auto text-center">
+            <h2 class="text-4xl mb-4 text-gray-800">The Stars of the Show</h2>
+            <p class="text-lg text-gray-600 mb-12">Discover the incredible variety of pigeons on display.</p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <a href="stars.html" class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-2xl transition-shadow block">
+                    <img src="images/fest_10.jpg" class="w-full aspect-square object-cover object-top rounded-lg mb-4" alt="Racing Homer">
+                    <h3 class="text-xl font-bold mb-2">The Racing Homer</h3>
+                    <p class="text-gray-600">Built for speed, endurance, and the legendary ability to find their way home from hundreds of miles away.</p>
+                </a>
+                <a href="stars.html" class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-2xl transition-shadow block">
+                    <img src="images/fest_11.png" class="w-full aspect-square object-cover object-top rounded-lg mb-4" alt="Satinette">
+                    <h3 class="text-xl font-bold mb-2">The Satinette</h3>
+                    <p class="text-gray-600">Known for their stunning, shimmering plumage and elegant presence.</p>
+                </a>
+                <a href="stars.html" class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-2xl transition-shadow block">
+                    <img src="images/fest_3.jpg" class="w-full aspect-square object-cover object-top rounded-lg mb-4" alt="The Roller">
+                    <h3 class="text-xl font-bold mb-2">The Tumbler/Roller</h3>
+                    <p class="text-gray-600">Known for their acrobatic flight patterns and mesmerizing mid-air rolls.</p>
+                </a>
+                <a href="stars.html#indian-fantail" class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-2xl transition-shadow block">
+                    <img src="images/fest_12.png" class="w-full aspect-square object-cover object-top rounded-lg mb-4" alt="Indian Fantail">
+                    <h3 class="text-xl font-bold mb-2">The Indian Fantail</h3>
+                    <p class="text-gray-600">Known for their striking fan-shaped tail and elegant posture, the Indian Fantail is a true showstopper.</p>
+                </a>
+                <a href="stars.html" class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-2xl transition-shadow block">
+                    <img src="images/fest_8.jpg" class="w-full aspect-square object-cover object-top rounded-lg mb-4" alt="Fancy Pigeon">
+                    <h3 class="text-xl font-bold mb-2">The Fancy Pigeon</h3>
+                    <p class="text-gray-600">Stunning plumage and unique physiques that showcase the beauty of avian breeding.</p>
+                </a>
+                <a href="stars.html" class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-2xl transition-shadow block">
+                    <img src="images/fest_6.jpg" class="w-full aspect-square object-cover object-top rounded-lg mb-4" alt="Dove Release">
+                    <h3 class="text-xl font-bold mb-2">Dove Release Pigeons</h3>
+                    <p class="text-gray-600">Trained to return home from wedding and funerals releases.</p>
+                </a>
             </div>
         </div>
     </section>
 
-    <section id="about" class="about">
-        <div class="container">
-            <h2>About Us</h2>
-            <p>Based in Niskayuna, NY, Urban Tree Fellers is dedicated to providing the Capital District with the highest standard of tree care. We specialize in the removal and management of large, complex trees where safety and precision are paramount. Our team utilizes industry-leading rigging and climbing techniques to ensure every job is handled with absolute care.</p>
-            <div style="margin-top: 2rem; display: flex; justify-content: center; align-items: center; flex-direction: column; gap: 10px;">
-                <img src="/assets/images/isa-emblem.png" alt="NYS Arborist ISA Chapter Emblem" style="max-height: 120px; width: auto; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));">
-                <p style="font-size: 0.9rem; color: #666; font-style: italic;">Proud Member of the International Society of Arboriculture</p>
+    <!-- VENDOR SIGNUP -->
+    <section id="vendors" class="py-20 px-4 text-center max-w-4xl mx-auto">
+        <div class="bg-white border-4 border-yellow-400 p-10 rounded-3xl shadow-2xl">
+            <h2 class="text-4xl mb-4 text-gray-800">Join the Market</h2>
+            <p class="text-xl mb-6 text-gray-700">Looking for vendors of all kinds! Food, crafts, local products—we want you here.</p>
+            
+            <div class="bg-yellow-100 text-yellow-800 p-6 rounded-lg font-bold mb-6 border-l-8 border-yellow-400 text-left">
+                <p class="text-lg mb-2">🚨 Only 24 vendor spots available!</p>
+                <p class="text-base font-normal text-gray-700">With only 24 vendor spots available, we’re keeping the market focused and high-energy. Signing up early not only secures your space but ensures you're locked in for our best available rates. While we have early bird special pricing, act now! Grab your spot today and join the celebration!</p>
+            </div>
+
+            <div class="flex flex-wrap justify-center gap-4 mb-8">
+                <div class="bg-red-600 text-white rounded-full w-24 h-24 flex items-center justify-center text-xs font-black uppercase text-center leading-tight rotate-12 shadow-lg border-2 border-white">
+                    10'x10'<br>ONLY<br>$40
+                </div>
+                <div class="bg-blue-600 text-white rounded-full w-24 h-24 flex items-center justify-center text-xs font-black uppercase text-center leading-tight -rotate-6 shadow-lg border-2 border-white">
+                    Specialty<br>Food<br>$60
+                </div>
+                <div class="bg-green-600 text-white rounded-full w-24 h-24 flex items-center justify-center text-xs font-black uppercase text-center leading-tight rotate-6 shadow-lg border-2 border-white">
+                    Food<br>Trucks<br>$100
+                </div>
+            </div>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSfMqiRf4DiNdqBp_EtkUedp9hN2zmD1gaAw5PcPeEVtrCFg0g/viewform?usp=header" target="_blank" class="inline-block bg-black text-white px-10 py-4 rounded-full text-xl font-bold hover:bg-gray-800 transition-all transform hover:scale-105 shadow-lg">Apply to be a Vendor</a>
+        </div>
+    </section>
+
+    <!-- SPONSORS PROMO -->
+    <section class="py-12 bg-white px-4 text-center">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-3xl mb-4 text-gray-800 font-bold">Supported by the Best</h2>
+            <p class="text-lg text-gray-600 mb-8">This festival wouldn't be possible without our amazing local sponsors.</p>
+            <a href="sponsors.html" class="inline-block border-4 border-black text-black px-10 py-4 rounded-full text-xl font-bold hover:bg-black hover:text-white transition-all transform hover:scale-105 shadow-lg">Support Our Sponsors</a>
+        </div>
+    </section>
+
+    <!-- LOGISTICS & MAP -->
+    <section class="py-20 bg-gray-800 text-white px-4">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-4xl mb-12">Plan Your Visit</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12 text-left">
+                <div class="bg-gray-700 p-6 rounded-2xl shadow-lg border-l-4 border-yellow-400">
+                    <h3 class="text-xl font-bold text-yellow-400 mb-2">Location</h3>
+                    <p class="text-lg">529 Burdeck St<br>Schenectady, NY</p>
+                </div>
+                <div class="bg-gray-700 p-6 rounded-2xl shadow-lg border-l-4 border-yellow-400">
+                    <h3 class="text-xl font-bold text-yellow-400 mb-2">Parking</h3>
+                    <p class="text-lg">Free Parking</p>
+                </div>
+                <div class="bg-gray-700 p-6 rounded-2xl shadow-lg border-l-4 border-yellow-400">
+                    <h3 class="text-xl font-bold text-yellow-400 mb-2">Accessibility</h3>
+                    <p class="text-lg">Stroller & Wheelchair Friendly — ADA Accessible.</p>
+                </div>
+                <div class="bg-gray-700 p-6 rounded-2xl shadow-lg border-l-4 border-yellow-400">
+                    <h3 class="text-xl font-bold text-yellow-400 mb-2">Entrance</h3>
+                    <p class="text-lg">Enter via the main Burdeck St gate.</p>
+                </div>
+            </div>
+
+            <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+                <a href="https://www.google.com/maps/search/?api=1&query=529+Burdeck+St+Schenectady+NY" target="_blank" class="inline-block w-full sm:w-auto bg-yellow-400 text-black px-8 py-4 rounded-lg font-bold hover:bg-yellow-300 transition-all text-lg shadow-lg">Get Directions (Google Maps)</a>
+                <a href="http://maps.apple.com/?q=529+Burdeck+St,+Schenectady,+NY" target="_blank" class="inline-block w-full sm:w-auto bg-green-500 text-white px-8 py-4 rounded-lg font-bold hover:bg-green-400 transition-all text-lg shadow-lg">Get Directions (Apple Maps)</a>
             </div>
         </div>
     </section>
 
-    <section id="contact" class="contact">
-        <div class="container">
-            <h2>Contact Us</h2>
-            <p>Ready to secure your property? Fill out the form below for a professional consultation.</p>
-            <div class="contact-container">
-                <form id="contact-form" class="contact-form">
-                    <div class="form-group">
-                        <label for="name">Full Name</label>
-                        <input type="text" id="name" name="name" placeholder="Your name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email Address</label>
-                        <input type="email" id="email" name="email" placeholder="email@example.com" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="phone">Phone Number</label>
-                        <input type="tel" id="phone" name="phone" placeholder="(555) 555-5555">
-                    </div>
-                    <div class="form-group">
-                        <label for="message">Project Details</label>
-                        <textarea id="message" name="message" rows="4" placeholder="Tell us about your tree project..."></textarea>
-                    </div>
-                    <button type="submit" class="btn" style="width: 100%; cursor: pointer;">Request Estimate</button>
-                </form>
-                <div id="form-response" style="display: none; margin-top: 20px; padding: 15px; border-radius: 5px; text-align: center;"></div>
-            </div>
-            <div class="contact-info" style="margin-top: 3rem;">
-            </div>
+    <!-- CONTACT CTA -->
+    <section class="py-12 bg-gray-900 text-white px-4 text-center">
+        <div class="max-w-4xl mx-auto">
+            <p class="text-xl mb-6 font-bold">Have a question for the organizers?</p>
+            <a href="contact.html" class="inline-block bg-yellow-400 text-black px-10 py-4 rounded-full text-xl font-bold hover:bg-yellow-300 transition-all transform hover:scale-105 shadow-lg">Contact Us</a>
         </div>
     </section>
 
-    <footer style="position: relative; z-index: 1;">
-        <p>&copy; 2026 Urban Tree Fellers. All Rights Reserved. <!-- Trigger Build 2026-04-22 15:35 --> </p>
+    <!-- FOOTER -->
+    <footer class="py-12 bg-black text-gray-400 text-center px-4">
+        <p class="mb-4 text-lg">Organized by the <span class="text-white font-bold">Schenectady Homing Pigeon Club</span></p>
+        <div class="flex justify-center gap-6 text-sm mb-8">
+            <p>Nabi: 518-400-2009</p>
+            <p>Sarah: 518-776-0771</p>
+        </div>
+        <p class="text-xs uppercase tracking-widest">&copy; 2026 Feathers & Fun Summer Festival</p>
     </footer>
-    
+
     <script>
-        const form = document.getElementById('contact-form');
-        const responseMsg = document.getElementById('form-response');
+        // COUNTDOWN TIMER
+        const targetDate = new Date('July 12, 2026 00:00:00').getTime();
 
-        form.addEventListener('submit', e => {
-            e.preventDefault();
-            
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const phone = document.getElementById('phone').value;
-            const message = document.getElementById('message').value;
+        function updateTimer() {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
 
-            // The 'formResponse' endpoint is used for actual submissions
-            const submitUrl = 'https://docs.google.com/forms/d/e/1FAIpQLScoFBv2btEZuUxOHlwIeGBzH8ADnGqirZBmX162hVP5rgm6dw/formResponse';
-            
-            const formData = new FormData();
-            formData.append('entry.110809525', name);
-            formData.append('entry.1342399023', email);
-            formData.append('entry.1108436809', phone);
-            formData.append('entry.1915892561', message);
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-            // Use fetch with mode: 'no-cors' to send data silently to Google
-            fetch(submitUrl, {
-                method: 'POST',
-                mode: 'no-cors', 
-                body: formData
-            })
-            .then(() => {
-                // Since we use no-cors, the response is opaque, but if the request 
-                // didn't throw an error, we assume it was sent.
-                responseMsg.style.display = 'block';
-                responseMsg.innerText = 'Thank you! Your request has been sent. We will contact you shortly.';
-                responseMsg.style.backgroundColor = '#d4edda';
-                responseMsg.style.color = '#155724';
-                form.reset();
-            })
-            .catch(error => {
-                console.error('Submission error:', error);
-                responseMsg.style.display = 'block';
-                responseMsg.innerText = 'Oops! Something went wrong. Please try again.';
-                responseMsg.style.backgroundColor = '#f8d7da';
-                responseMsg.style.color = '#721c24';
-            });
+            document.getElementById('timer').innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
+
+            if (distance < 0) {
+                document.getElementById('timer').innerHTML = "EVENT HAS STARTED!";
+            }
+        }
+
+        setInterval(updateTimer, 1000);
+        updateTimer();
+
+        // LIGHTBOX LOGIC
+        let currentImageIndex = 0;
+        let galleryImages = [];
+
+        // Initialize gallery images on load
+        document.addEventListener("DOMContentLoaded", () => {
+            const grid = document.getElementById("gallery-grid");
+            if (grid) {
+                const imgs = grid.querySelectorAll("img");
+                galleryImages = Array.from(imgs).map(img => img.src);
+            }
+        });
+
+        function openLightbox(index) {
+            currentImageIndex = index;
+            document.getElementById("lightbox-img").src = galleryImages[currentImageIndex];
+            document.getElementById("lightbox").classList.remove("hidden");
+            document.body.style.overflow = "hidden"; // Prevent scrolling behind modal
+        }
+
+        function closeLightbox() {
+            document.getElementById("lightbox").classList.add("hidden");
+            document.body.style.overflow = "auto";
+        }
+
+        function nextImage() {
+            currentImageIndex = (currentImageIndex + 1) % galleryImages.length;
+            document.getElementById("lightbox-img").src = galleryImages[currentImageIndex];
+        }
+
+        function prevImage() {
+            currentImageIndex = (currentImageIndex - 1 + galleryImages.length) % galleryImages.length;
+            document.getElementById("lightbox-img").src = galleryImages[currentImageIndex];
+        }
+
+        // Close on escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === "Escape" && !document.getElementById("lightbox").classList.contains("hidden")) {
+                closeLightbox();
+            }
         });
     </script>
 </body>
