@@ -98,7 +98,7 @@
             const formData = new FormData(this);
             const tier = document.getElementById('form-tier').value;
             
-            // Google Form Entry IDs
+            // Google Form Entry IDs (verified from prefill link)
             const entries = {
                 '600061920': formData.get('name'),
                 '878167482': formData.get('phone'),
@@ -107,7 +107,8 @@
                 '565258370': tier
             };
 
-            const baseUrl = 'https://docs.google.com/forms/d/e/1FAIpQLScUdIEtq_jzoGyuuNnr6MgH9KbgA_M-44rqfd7Vo_qHhnmoVQ/viewform';
+            // CRITICAL: Use /formResponse instead of /viewform to actually submit the data
+            const baseUrl = 'https://docs.google.com/forms/d/e/1FAIpQLScUdIEtq_jzoGyuuNnr6MgH9KbgA_M-44rqfd7Vo_qHhnmoVQ/formResponse';
             
             const params = new URLSearchParams();
             for (const [id, value] of Object.entries(entries)) {
