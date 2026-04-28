@@ -164,13 +164,12 @@
             const formData = new FormData(this);
             const tier = document.getElementById('form-tier').value;
             
-            // Google Form Entry IDs extracted from the public form
             const entries = {
-                '600061920': formData.get('name'),    // Business Name
-                '878167482': formData.get('phone'),    // Phone
-                '238550636': formData.get('email'),   // Email
-                '1743288544': formData.get('notes'),    // Message/Notes
-                '565258370': tier                     // Tier
+                '600061920': formData.get('name'),
+                '878167482': formData.get('phone'),
+                '238550636': formData.get('email'),
+                '1743288544': formData.get('notes'),
+                '565258370': tier
             };
 
             const baseUrl = 'https://docs.google.com/forms/d/e/1FAIpQLScUdIEtq_jzoGyuuNnr6MgH9KbgA_M-44rqfd7Vo_qHhnmoVQ/viewform';
@@ -182,17 +181,14 @@
 
             const finalUrl = `${baseUrl}?${params.toString()}`;
 
-            // The Silent Bridge: Submit via hidden iframe
             const hiddenIframe = document.createElement('iframe');
             hiddenIframe.style.display = 'none';
             hiddenIframe.src = finalUrl;
             document.body.appendChild(hiddenIframe);
 
-            // Feedback
             document.getElementById('sponsor-form').classList.add('hidden');
             document.getElementById('form-success').classList.remove('hidden');
 
-            // Cleanup iframe
             setTimeout(() => {
                 document.body.removeChild(hiddenIframe);
             }, 2000);
