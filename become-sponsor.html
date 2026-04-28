@@ -47,7 +47,7 @@
                 <ul class="text-gray-600 mb-8 space-y-3 flex-grow">
                     <li class="flex items-start"><span class="text-green-500 mr-2">✓</span> Online Shout-out</li>
                 </ul>
-                <a href="contact.html?tier=Support" class="block text-center bg-gray-100 text-gray-800 py-3 rounded-xl font-bold hover:bg-black hover:text-white transition-all">Choose Support</a>
+                <button onclick="openSponsorForm('Support')" class="block text-center bg-gray-100 text-gray-800 py-3 rounded-xl font-bold hover:bg-black hover:text-white transition-all">Choose Support</button>
             </div>
 
             <!-- Silver Tier -->
@@ -58,7 +58,7 @@
                     <li class="flex items-start"><span class="text-green-500 mr-2">✓</span> Multiple Online Shout-outs</li>
                     <li class="flex items-start"><span class="text-green-500 mr-2">✓</span> Banner Placement</li>
                 </ul>
-                <a href="contact.html?tier=Silver" class="block text-center bg-gray-100 text-gray-800 py-3 rounded-xl font-bold hover:bg-black hover:text-white transition-all">Choose Silver</a>
+                <button onclick="openSponsorForm('Silver')" class="block text-center bg-gray-100 text-gray-800 py-3 rounded-xl font-bold hover:bg-black hover:text-white transition-all">Choose Silver</button>
             </div>
 
             <!-- Gold Tier -->
@@ -72,7 +72,7 @@
                     <li class="flex items-start"><span class="text-green-500 mr-2">✓</span> Yard Sign Placement</li>
                     <li class="flex items-start"><span class="text-green-500 mr-2">✓</span> Distribution Flyer Advertisement</li>
                 </ul>
-                <a href="contact.html?tier=Gold" class="block text-center bg-black text-white py-3 rounded-xl font-bold hover:bg-gray-800 transition-all">Choose Gold</a>
+                <button onclick="openSponsorForm('Gold')" class="block text-center bg-black text-white py-3 rounded-xl font-bold hover:bg-gray-800 transition-all">Choose Gold</button>
             </div>
 
             <!-- Platinum Tier -->
@@ -83,7 +83,7 @@
                     <li class="flex items-start"><span class="text-green-500 mr-2">✓</span> Everything in Gold</li>
                     <li class="flex items-start"><span class="text-green-500 mr-2">✓</span> Live Announcement at Event</li>
                 </ul>
-                <a href="contact.html?tier=Platinum" class="block text-center bg-gray-100 text-gray-800 py-3 rounded-xl font-bold hover:bg-black hover:text-white transition-all">Choose Platinum</a>
+                <button onclick="openSponsorForm('Platinum')" class="block text-center bg-gray-100 text-gray-800 py-3 rounded-xl font-bold hover:bg-black hover:text-white transition-all">Choose Platinum</button>
             </div>
         </div>
     </section>
@@ -93,5 +93,57 @@
         <p class="text-xs uppercase tracking-widest">&copy; 2026 Feathers & Fun Summer Festival</p>
     </footer>
 
+    <script>
+        function openSponsorForm(tier) {
+            document.getElementById('modal-tier-title').innerText = tier + " Sponsorship";
+            document.getElementById('form-tier').value = tier;
+            document.getElementById('sponsor-modal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeSponsorForm() {
+            document.getElementById('sponsor-modal').classList.add('hidden');
+            document.getElementById('sponsor-form').classList.remove('hidden');
+            document.getElementById('form-success').classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        document.getElementById('sponsor-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const tier = document.getElementById('form-tier').value;
+            
+            // Google Form Entry IDs
+            const entries = {
+                '600061920': formData.get('name'),    // Business Name
+                '878167482': formData.get('phone'),    // Phone
+                '238550636': formData.get('email'),   // Email
+                '1743288544': formData.get('notes'),  // Notes
+                '565258370': tier                      // Tier
+            };
+
+            const formUrl = 'https://docs.google.com/forms/d/e/1FAIpQLScUdIEtq_jzoGyuuNnr6MgH9KbgA_M-44rqfd7Vo_qHhnmoVQ/formResponse';
+            
+            const params = new URLSearchParams();
+            for (const [id, value] of Object.entries(entries)) {
+                params.append(`entry.${id}`, value);
+            }
+
+            try {
+                await fetch(formUrl, {
+                    method: 'POST',
+                    mode: 'no-cors', // The Silent Bridge
+                    body: params
+                });
+                
+                document.getElementById('sponsor-form').classList.add('hidden');
+                document.getElementById('form-success').classList.remove('hidden');
+            } catch (error) {
+                console.error('Error submitting form:', error);
+                alert('Something went wrong. Please try again or contact us directly.');
+            }
+        });
+    </script>
 </body>
 </html>
