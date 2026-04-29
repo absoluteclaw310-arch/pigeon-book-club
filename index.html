@@ -254,7 +254,6 @@
             e.preventDefault();
             const phone = this.querySelector('[name="phone"]').value;
             
-            // Corrected Google Form URL and Entry ID from user request
             const baseUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSejWPHJD6ghgCTtdrgpWxEwo30JA70c7J4riuQEEZBPw7NNow/formResponse';
             const entryId = 'entry.814408878';
             const finalUrl = `${baseUrl}?${entryId}=${encodeURIComponent(phone)}`;
@@ -270,6 +269,76 @@
             setTimeout(() => {
                 document.body.removeChild(hiddenIframe);
             }, 2000);
+        });
+
+        // COUNTDOWN TIMER
+        const targetDate = new Date('July 12, 2026 00:00:00').getTime();
+
+        function updateTimer() {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            const timerElement = document.getElementById('timer');
+            if (timerElement) {
+                timerElement.innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
+            }
+
+            if (distance < 0 && timerElement) {
+                timerElement.innerHTML = "EVENT HAS STARTED!";
+            }
+        }
+
+        setInterval(updateTimer, 1000);
+        updateTimer();
+
+        // Lightbox Logic
+        const galleryImages = [
+            "images/fest_7.jpg",
+            "images/fest_2.jpg",
+            "images/fest_5.jpg",
+            "images/fest_1.jpg",
+            "images/gallery_1.jpg",
+            "images/gallery_2.jpg",
+            "images/gallery_3.jpg",
+            "images/gallery_4.jpg",
+            "images/gallery_5.jpg",
+            "images/gallery_6.jpg",
+            "images/gallery_8.jpg",
+            "images/gallery_9.png"
+        ];
+        let currentImageIndex = 0;
+
+        function openLightbox(index) {
+            currentImageIndex = index;
+            document.getElementById("lightbox-img").src = galleryImages[currentImageIndex];
+            document.getElementById("lightbox").classList.remove("hidden");
+            document.body.style.overflow = "hidden";
+        }
+
+        function closeLightbox() {
+            document.getElementById("lightbox").classList.add("hidden");
+            document.body.style.overflow = "auto";
+        }
+
+        function nextImage() {
+            currentImageIndex = (currentImageIndex + 1) % galleryImages.length;
+            document.getElementById("lightbox-img").src = galleryImages[currentImageIndex];
+        }
+
+        function prevImage() {
+            currentImageIndex = (currentImageIndex - 1 + galleryImages.length) % galleryImages.length;
+            document.getElementById("lightbox-img").src = galleryImages[currentImageIndex];
+        }
+
+        document.addEventListener('keydown', function(event) {
+            if (event.key === "Escape" && !document.getElementById("lightbox").classList.contains("hidden")) {
+                closeLightbox();
+            }
         });
     </script>
 </body>
