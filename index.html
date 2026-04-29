@@ -10,6 +10,16 @@
         body { font-family: 'Inter', sans-serif; }
         h1, h2 { font-family: 'Bungee', cursive; }
         .gradient-bg { background: linear-gradient(135deg, #fcd34d 0%, #fbbf24 100%); }
+
+        @keyframes flash-yellow {
+            0%, 100% { background-color: #fbbf24; color: black; }
+            50% { background-color: #fef3c7; color: #92400e; }
+        }
+        .animate-flash-yellow {
+            animation: flash-yellow 1s infinite;
+            background-color: #fbbf24;
+            color: black;
+        }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-900">
@@ -19,6 +29,9 @@
         <p class="text-sm md:text-lg font-bold uppercase tracking-widest block mb-1">Event Starts In:</p>
         <p id="timer" class="text-yellow-400 text-2xl md:text-3xl font-black mb-1">Loading...</p>
         <p class="text-xl md:text-2xl font-black text-red-600 uppercase drop-shadow-sm">Sunday July 12, 2026</p>
+        <button onclick="openSmsModal()" class="animate-flash-yellow px-4 py-1 rounded-full text-xs md:text-sm font-black uppercase tracking-tighter shadow-md hover:scale-105 transition-transform mt-2">
+            🔔 SMS ALERT
+        </button>
     </div>
     <div class="bg-red-600 text-white py-1 text-center font-bold uppercase tracking-widest text-lg shadow-md relative z-40">
         Free Family Event
@@ -198,69 +211,65 @@
         <p class="text-xs uppercase tracking-widest">&copy; 2026 Feathers & Fun Summer Festival</p>
     </footer>
 
+    <!-- SMS ALERT MODAL -->
+    <div id="sms-modal" class="fixed inset-0 z-[110] bg-black bg-opacity-70 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-white w-full max-w-md rounded-3xl shadow-2xl overflow-hidden relative">
+            <div class="bg-yellow-400 p-6 text-center">
+                <h2 class="text-2xl font-bold text-black uppercase tracking-tight">Get an SMS Alert!</h2>
+                <p class="text-sm text-black opacity-80">We'll text you when the festival is about to start.</p>
+            </div>
+            <div class="p-8">
+                <form id="sms-form" class="space-y-6">
+                    <div>
+                        <label class="block text-xs font-bold text-gray-500 uppercase mb-2">Phone Number</label>
+                        <input type="tel" name="phone" required placeholder="(518) 000-0000" class="w-full px-4 py-3 rounded-xl border-2 border-gray-100 focus:border-yellow-400 outline-none transition-all">
+                    </div>
+                    <div class="flex gap-3">
+                        <button type="button" onclick="closeSmsModal()" class="flex-1 py-3 rounded-xl font-bold text-gray-400 hover:bg-gray-100 transition-all">Cancel</button>
+                        <button type="submit" class="flex-1 bg-black text-white py-3 rounded-xl font-bold hover:bg-gray-800 transition-all shadow-lg">Sign Me Up!</button>
+                    </div>
+                </form>
+                <div id="sms-success" class="hidden text-center py-12">
+                    <div class="text-6xl mb-4">📱</div>
+                    <h3 class="text-2xl font-bold mb-2">You're on the list!</h3>
+                    <p class="text-gray-600 mb-8">We'll send you a reminder before the big day.</p>
+                    <button onclick="closeSmsModal()" class="bg-black text-white px-8 py-3 rounded-xl font-bold hover:bg-gray-800 transition-all">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
-        // COUNTDOWN TIMER
-        const targetDate = new Date('July 12, 2026 00:00:00').getTime();
-
-        function updateTimer() {
-            const now = new Date().getTime();
-            const distance = targetDate - now;
-
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-            document.getElementById('timer').innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
-
-            if (distance < 0) {
-                document.getElementById('timer').innerHTML = "EVENT HAS STARTED!";
-            }
+        function openSmsModal() {
+            document.getElementById('sms-modal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
         }
 
-        setInterval(updateTimer, 1000);
-        updateTimer();
-
-        // LIGHTBOX LOGIC
-        let currentImageIndex = 0;
-        let galleryImages = [];
-
-        // Initialize gallery images on load
-        document.addEventListener("DOMContentLoaded", () => {
-            const grid = document.getElementById("gallery-grid");
-            if (grid) {
-                const imgs = grid.querySelectorAll("img");
-                galleryImages = Array.from(imgs).map(img => img.src);
-            }
-        });
-
-        function openLightbox(index) {
-            currentImageIndex = index;
-            document.getElementById("lightbox-img").src = galleryImages[currentImageIndex];
-            document.getElementById("lightbox").classList.remove("hidden");
-            document.body.style.overflow = "hidden"; // Prevent scrolling behind modal
+        function closeSmsModal() {
+            document.getElementById('sms-modal').classList.add('hidden');
+            document.body.style.overflow = 'auto';
         }
 
-        function closeLightbox() {
-            document.getElementById("lightbox").classList.add("hidden");
-            document.body.style.overflow = "auto";
-        }
+        document.getElementById('sms-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const phone = this.querySelector('[name="phone"]').value;
+            
+            // Corrected Google Form URL and Entry ID from user request
+            const baseUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSejWPHJD6ghgCTtdrgpWxEwo30JA70c7J4riuQEEZBPw7NNow/formResponse';
+            const entryId = 'entry.814408878';
+            const finalUrl = `${baseUrl}?${entryId}=${encodeURIComponent(phone)}`;
 
-        function nextImage() {
-            currentImageIndex = (currentImageIndex + 1) % galleryImages.length;
-            document.getElementById("lightbox-img").src = galleryImages[currentImageIndex];
-        }
+            const hiddenIframe = document.createElement('iframe');
+            hiddenIframe.style.display = 'none';
+            hiddenIframe.src = finalUrl;
+            document.body.appendChild(hiddenIframe);
 
-        function prevImage() {
-            currentImageIndex = (currentImageIndex - 1 + galleryImages.length) % galleryImages.length;
-            document.getElementById("lightbox-img").src = galleryImages[currentImageIndex];
-        }
+            document.getElementById('sms-form').classList.add('hidden');
+            document.getElementById('sms-success').classList.remove('hidden');
 
-        // Close on escape key
-        document.addEventListener('keydown', function(event) {
-            if (event.key === "Escape" && !document.getElementById("lightbox").classList.contains("hidden")) {
-                closeLightbox();
-            }
+            setTimeout(() => {
+                document.body.removeChild(hiddenIframe);
+            }, 2000);
         });
     </script>
 </body>
